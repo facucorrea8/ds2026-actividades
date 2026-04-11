@@ -1,0 +1,16 @@
+body {
+    font-style: Arial, sans-seriff;
+    background-color: #2F2F2F;
+    color: #E1E0CD;
+    margin: 20px;
+}
+
+h1{
+    color: #E1E0CD;
+}
+
+.importante {
+    background-color: #757575;
+    padding: 10px;                 
+    font-weight: bold;
+}
