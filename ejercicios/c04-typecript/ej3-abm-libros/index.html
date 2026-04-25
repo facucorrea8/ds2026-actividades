@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Catálogo de Libros - TypeScript</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .controles { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        button { cursor: pointer; margin-right: 5px; padding: 5px 10px; }
+        #stats { font-weight: bold; color: #2c3e50; background: #ecf0f1; padding: 10px; display: inline-block; }
+        ul { list-style-type: square; }
+    </style>
+</head>
+<body>
+
+    <h1>Catálogo de Libros</h1>
+
+    <div class="controles">
+        <input type="text" id="filtroAutor" placeholder="Nombre del autor...">
+        <button id="filtrar">Filtrar</button>
+        
+        <br><br>
+
+        <button id="mostrarDisponibles">Solo disponibles</button>
+        <button id="mostrarTodos">Ver todos</button>
+    </div>
+
+    <div class="seccion" style="border: 1px dashed #3498db; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+        <h3>Agregar un Nuevo Libro</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;">
+            <input type="text" id="nuevoTitulo" placeholder="Título del libro">
+            <input type="text" id="nuevoAutor" placeholder="Nombre del autor">
+            <input type="number" id="nuevoPrecio" placeholder="Precio ($)">
+            <button id="btnAgregar" style="background-color: #27ae60; color: white;">Agregar al Catálogo</button>
+        </div>
+        <div id="errorForm" style="color: #e74c3c; font-weight: bold; margin-top: 10px;"></div>
+    </div>
+
+    <ul id="listado"></ul>
+
+    <p id="stats"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>
