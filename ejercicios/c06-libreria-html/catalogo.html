@@ -38,6 +38,45 @@
             </div>
         </div>
     </nav>
+    <main class="container my-5"></main>
+        <div class="row mb-5">
+            <div class="col text-center">
+                <h1 class="fw-bold">Nuestro Catálogo Completo</h1>
+                <p class="text-muted">Explorá todos los títulos disponibles en nuestra biblioteca.</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center my-5">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" id="libro-input" class="form-control form-control-lg" placeholder="Escribí el título de un libro...">
+                    <button class="btn btn-primary" id="buscar-btn">Buscar</button>
+                </div>
+                <p id="error-msg" class="text-danger mt-2" style="display: none;"></p>
+            </div>
+        </div>
+
+        <div id="resultados" class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Portada libro">
+                    <div class="card-body">
+                        <h5 class="card-title h6 fw-bold">Título del Libro</h5>
+                        <p class="card-text small text-muted">Autor del Libro</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-primary">$15.000</span>
+                            <a href="libro.html" class="btn btn-sm btn-outline-primary">Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/data.js"></script>
 </body>
