@@ -2,7 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import type { Libro } from '../types/libro';
-import BookCard from '../components/card'; 
+import BookCard from '../components/card';
+import { Link } from 'react-router-dom';
+
 const libros: Libro[] = [
   {
     id: 1,
@@ -27,7 +29,7 @@ export default function Home() {
         <Container className="py-5">
           <h1 className="display-4 fw-bold">Bienvenidos a Mi Biblioteca!</h1>
           <p className="lead">Descubrí las mejores lecturas y sumergite en nuevas aventuras.</p>
-          <a href="catalogo.html" className="btn btn-light btn-lg">Ir al Catálogo</a>
+          <Link to="/catalogo" className="btn btn-light btn-lg">Ir al Catálogo</Link>
         </Container>
       </header>
 
@@ -37,6 +39,7 @@ export default function Home() {
           {libros.map((libro) => (
             <Col key={libro.id} className="d-flex justify-content-center">
               <BookCard
+                id={libro.id} 
                 titulo={libro.titulo}
                 autor={libro.autor}
                 precio={libro.precio}
