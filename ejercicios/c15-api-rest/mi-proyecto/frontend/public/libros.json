@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "titulo": "El Aleph",
+    "autor": "Jorge Luis Borges",
+    "descripcion": "Una de las obras cumbre de la literatura hispanoamericana.",
+    "precio": 2500,
+    "categoria": "Ficción"
+  },
+  {
+    "id": 2,
+    "titulo": "Ficciones",
+    "autor": "Jorge Luis Borges",
+    "descripcion": "Colección de cuentos que desafían la lógica y el tiempo.",
+    "precio": 2700,
+    "categoria": "Ficción"
+  }
+]
