@@ -1,0 +1,151 @@
+@baseUrl = http://localhost:3000
+
+### 1. Listar todos los libros
+GET {{baseUrl}}/api/libros
+
+### 2. Filtrar libros disponibles
+GET {{baseUrl}}/api/libros?disponible=true
+
+### 3. Obtener un libro por ID
+GET {{baseUrl}}/api/libros/1
+
+### 4. Intentar obtener un libro inexistente (espera status 404)
+GET {{baseUrl}}/api/libros/999
+
+### 5. Crear un nuevo libro
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "El Aleph",
+  "autor": "Jorge Luis Borges",
+  "precio": 8200,
+  "imagen": "https://ejemplo.com/aleph.jpg",
+  "disponible": true
+}
+
+### 6. Actualizar un libro existente
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela (Edición Conmemorativa)",
+  "autor": "Julio Cortázar",
+  "precio": 9500,
+  "imagen": "https://ejemplo.com/rayuela-edicion.jpg",
+  "disponible": true
+}
+
+### 7. Borrar un libro (espera status 204 sin contenido)
+DELETE {{baseUrl}}/api/libros/2
+
+### 8. Intentar borrar el mismo libro ya borrado (espera status 404)
+DELETE {{baseUrl}}/api/libros/2
+
+### 9. Listar todos los autores
+GET {{baseUrl}}/api/autores
+
+### 10. Obtener un autor por ID
+GET {{baseUrl}}/api/autores/1
+
+### 400 sin título
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{ "precio": 5000, "imagen": "https://placehold.co/150", "autorId": 1 }
+
+### 400 ID inválido (string)
+GET http://localhost:3000/api/libros/abc
+
+### 409 Autor duplicado
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{ "nombre": "Antoine de Saint-Exupéry", "nacionalidad": "Francia" }
+
+### 409 Borrar autor con libros (Restrict)
+DELETE http://localhost:3000/api/autores/1
+
+### 404 Libro inexistente
+GET http://localhost:3000/api/libros/9999
+
+### Variables globales
+@baseUrl = http://localhost:3000/api
+@tokenAdmin = {{loginAdmin.response.body.token}}
+@tokenCliente = {{loginCliente.response.body.token}}
+
+### 1. Login como ADMIN
+# @name loginAdmin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "Admin1234"
+}
+
+### 2. Login como CLIENTE
+# @name loginCliente
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.test",
+  "password": "Cliente1234"
+}
+
+### 3. Registro de un nuevo usuario
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Nouveau Usuario",
+  "email": "nuevo@libreria.test",
+  "password": "Password123"
+}
+
+### 4. Consultar perfil del usuario actual (/me)
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{tokenAdmin}}
+
+### 5. Probar GET Libros (Público - Sin Token)
+GET {{baseUrl}}/libros
+
+### 6. Intentar crear libro SIN TOKEN (Debe devolver 401)
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro de prueba",
+  "precio": 3500,
+  "disponible": true,
+  "autorId": 1,
+  "categorias": [1]
+}
+
+### 7. Intentar crear libro como CLIENTE (Debe devolver 403 Forbidden)
+POST {{baseUrl}}/libros
+Authorization: Bearer {{tokenCliente}}
+Content-Type: application/json
+
+{
+  "titulo": "Libro de prueba",
+  "precio": 3500,
+  "disponible": true,
+  "autorId": 1,
+  "categorias": [1]
+}
+
+### 8. Crear libro como ADMIN (Debe devolver 201 Created)
+POST {{baseUrl}}/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "precio": 8500,
+  "disponible": true,
+  "autorId": 2,
+  "categorias": [1]
+}
+
